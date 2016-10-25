@@ -9,7 +9,7 @@ package flight;
  *
  * @author zoltaniszlai
  */
-public class Passager {
+public final class Passager {
     private int freeBags;
     private int checkedBags;
     private double perBagFee;
