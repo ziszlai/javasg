@@ -5,6 +5,8 @@
  */
 package flight;
 
+import flight.Passager;
+
 /**
  *
  * @author zoltaniszlai
@@ -13,6 +15,8 @@ public class Flight {
     private int passengers, flightNumber, seats = 150;
     private char flightClass;
     private boolean[] isSeatAvailable;
+    int totalCheckedBags;
+    int maxCarryOns = seats * 2, totalCarryOns;
     {
         isSeatAvailable = new boolean[seats];
         for(int i = 0 ; i< seats; i++) {
@@ -29,6 +33,16 @@ public class Flight {
         this.flightClass = flightClass;
     }
     
+    public void addPassengers(Passager[] list) {
+        if (hasSeating(list.length)) {
+            passengers += list.length;
+            for(Passager passenger: list) {
+                totalCheckedBags += passenger.getCheckedBags();
+            }
+        } else
+            handleTooMany();
+    }
+    
     
     public int getSeats() {
         return seats;
@@ -39,10 +53,43 @@ public class Flight {
     }
     
     public void add1Passenger() {
-        if (passengers < seats)
+        if (hasSeating())
             passengers += 1;
         else
             handleTooMany();
+    }
+    
+    public void add1Passenger(int bags) {
+        if (hasSeating()) {
+            add1Passenger();
+            totalCheckedBags += bags;
+        }
+    }
+    public void add1Passenger(Passager p) {
+        add1Passenger(p.getCheckedBags());
+    }
+    
+    public void add1Passenger(int bags, int carryOns) {
+        if (hasSeating() && hasCarryOnSpace(carryOns)) {
+            add1Passenger(bags);
+            totalCarryOns += carryOns;
+        }
+    }
+    
+    public void add1Passenger(Passager p, int carryOns) {
+        add1Passenger(p.getCheckedBags(), carryOns);
+    }
+    
+    private boolean hasSeating() {
+        return passengers < seats;
+    }
+    
+    private boolean hasSeating(int length) {
+        return passengers < length;
+    }
+    
+    private boolean hasCarryOnSpace(int carryOns) {
+        return totalCarryOns + carryOns <= maxCarryOns;
     }
     
     private void handleTooMany() {
@@ -72,5 +119,5 @@ public class Flight {
             lax3 = lax1.createNewWithBoth(lax2);
         }
     }
-    
+   
 }

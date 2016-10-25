@@ -14,6 +14,7 @@ public class Passager {
     private int checkedBags;
     private double perBagFee;
 
+    public int getCheckedBags() { return checkedBags; }
     public Passager() {
         
     }
