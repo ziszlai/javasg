@@ -12,9 +12,20 @@ import flight.Passager;
  * @author zoltaniszlai
  */
 public class Flight {
-    private int passengers, flightNumber;
-    private char flightClass;
+    private int passengers;
+    private Integer flightNumber;
+    private Character flightClass;
     private boolean[] isSeatAvailable;
+    private int seats;
+    static final int MAX_FAA_SEATS = 500;
+    
+    public void setSeats(int seats) {
+        if (seats <= MAX_FAA_SEATS){
+            this.seats = seats;
+        }
+        else
+            System.out.println("Can't set seats");
+    }
     int totalCheckedBags;
     int maxCarryOns = getSeats() * 2, totalCarryOns;
     {
@@ -35,6 +46,15 @@ public class Flight {
     
     public int getPassengers() {
         return passengers;
+    }
+    
+    @Override
+    public String toString() {
+        if (flightNumber != null) {
+            return "Flight #" + flightNumber;
+        } else if(flightClass != null)
+            return "Flight Class " + flightClass;
+        return "Flight identity not set";
     }
     
     public void addPassengers(Passager[] list) {
