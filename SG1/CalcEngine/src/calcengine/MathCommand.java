@@ -9,7 +9,7 @@ package calcengine;
  *
  * @author zoltaniszlai
  */
-public enum MathCommand {
+enum MathCommand {
     Add,
     Substract,
     Multiply,

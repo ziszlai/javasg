@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package calcengine;
+package myapp;
+import calcengine.*;
+
 
 /**
  *
  * @author zoltaniszlai
  */
-public class CalcEngine {
+public class Main {
 
     /**
      * @param args the command line arguments
@@ -41,6 +43,7 @@ public class CalcEngine {
                     System.out.println(" Original exception: " + e.getCause().getMessage());
             }
         }
+        
         /*
         MathEquation[] equations = new MathEquation[4];
         equations[0] = new MathEquation('d', 100.0d, 50.0d);
