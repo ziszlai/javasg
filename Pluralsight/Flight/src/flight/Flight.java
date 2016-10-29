@@ -25,6 +25,14 @@ public class Flight implements Comparable<Flight>, Iterable<Person> {
     private int flightTime; // minutes past midnight
     private CrewMember[] crew;
     private Passager[] roster;
+    static int allPassengers;
+    
+    static int getAllPassengers() {
+        return allPassengers;
+    }
+    static void resetAllPassengers() {
+        allPassengers = 0;
+    }
     
     @Override
     public int compareTo(Flight f) {
@@ -118,9 +126,10 @@ public class Flight implements Comparable<Flight>, Iterable<Person> {
     }
     
     public void add1Passenger() {
-        if (hasSeating())
+        if (hasSeating()) {
             passengers += 1;
-        else
+            allPassengers += 1;
+        } else
             handleTooMany();
     }
     
