@@ -14,7 +14,7 @@ import java.io.IOException;
  *
  * @author zoltaniszlai
  */
-public class Flight implements Comparable {
+public class Flight implements Comparable<Flight> {
     private int passengers;
     private Integer flightNumber;
     private Character flightClass;
@@ -24,8 +24,7 @@ public class Flight implements Comparable {
     private int flightTime; // minutes past midnight
     
     @Override
-    public int compareTo(Object o) {
-        Flight f = (Flight) o;
+    public int compareTo(Flight f) {
         return flightTime - f.flightTime;
     }
     public void setSeats(int seats) {
