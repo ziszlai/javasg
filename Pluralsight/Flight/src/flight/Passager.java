@@ -13,6 +13,7 @@ public final class Passager {
     private final int freeBags;
     private int checkedBags;
     private double perBagFee;
+    int passengers;
 
     public int getCheckedBags() { return checkedBags; }
     public Passager() {

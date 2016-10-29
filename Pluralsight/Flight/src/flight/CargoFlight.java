@@ -5,6 +5,8 @@
  */
 package flight;
 
+import java.io.*;
+
 /**
  *
  * @author zoltaniszlai
@@ -46,5 +48,10 @@ public class CargoFlight extends Flight {
     
     private void handleNoSpace() {
         System.out.println("Not enought space");
+    }
+    
+    @Override
+    public void addPassengers(String filename) throws FileNotFoundException {
+
     }
 }
