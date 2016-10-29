@@ -40,7 +40,20 @@ public class Flight implements Comparable<Flight>, Iterable<Person> {
     }
     
     public Iterator<Person> iterator () {
-        return new FlightIterator(crew, roster);
+        return new Iterator<Person>() {
+            private int index = 0;
+            @Override
+            public boolean hasNext() {
+                return index < (crew.length + roster.length);
+            }
+            @Override
+            public Person next() {
+                Person p = (index < crew.length) ?
+                        crew[index]:roster [index - crew.length];
+                index++;
+                return p;
+            }
+        };
     }
     public void setSeats(int seats) {
         if (seats <= MAX_FAA_SEATS){

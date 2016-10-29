@@ -14,19 +14,32 @@ public final class Passager extends Person implements Comparable<Passager> {
     private int checkedBags;
     private double perBagFee;
     int passengers;
-    private int memberLevel;
-    private int memberDays;
+    public static class RewardProgram {
+        private int memberLevel;
+        private int memberDays;
+        
+        public int getLevel() { return memberLevel; }
+        public void setLevel(int level) { this.memberLevel = level; }
+        
+        public int getMemberDays() { return memberDays; }
+        public void setMemberDays(int memberDays) { this.memberDays = memberDays; }
+    };
    
+    private RewardProgram rewardProgram = new RewardProgram();
+    public RewardProgram getRewardProgram() {
+        return rewardProgram;
+    }
+    
     @Override
     public int compareTo(Passager p) {
-        if (memberLevel > p.memberLevel)
+        if (rewardProgram.memberLevel > p.rewardProgram.memberLevel)
             return -1;
-        else if (memberLevel < p.memberLevel)
+        else if (rewardProgram.memberLevel < p.rewardProgram.memberLevel)
             return 1;
         else {
-            if (memberDays > p.memberDays)
+            if (rewardProgram.memberDays > p.rewardProgram.memberDays)
                 return -1;
-            else if (memberDays < p.memberDays)
+            else if (rewardProgram.memberDays < p.rewardProgram.memberDays)
                 return 1;
             else
                 return 0;
@@ -35,7 +48,7 @@ public final class Passager extends Person implements Comparable<Passager> {
 
     public int getCheckedBags() { return checkedBags; }
     public Passager() {
-        
+        this.freeBags = 0;
     }
     public Passager(int freeBags) {
         this(freeBags > 1? 25.0d: 50.0d);
@@ -48,6 +61,7 @@ public final class Passager extends Person implements Comparable<Passager> {
     }
     
     private Passager (double perBagFee) {
+        this();
         this.perBagFee = perBagFee;
     }
 }
