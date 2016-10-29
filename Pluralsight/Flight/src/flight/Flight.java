@@ -22,6 +22,8 @@ public class Flight implements Comparable<Flight> {
     private int seats;
     static final int MAX_FAA_SEATS = 500;
     private int flightTime; // minutes past midnight
+    private CrewMember[] crew;
+    private Passager[] roaster;
     
     @Override
     public int compareTo(Flight f) {

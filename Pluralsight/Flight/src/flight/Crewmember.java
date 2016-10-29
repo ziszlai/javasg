@@ -9,9 +9,9 @@ package flight;
  *
  * @author zoltaniszlai
  */
-public class Crewmember {
+public class CrewMember {
     private FlightCredJob job;
-    public Crewmember(FlightCredJob job) {
+    public CrewMember(FlightCredJob job) {
         this.job = job;
     }
     
