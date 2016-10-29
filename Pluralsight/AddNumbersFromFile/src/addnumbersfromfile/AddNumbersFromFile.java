@@ -5,8 +5,7 @@
  */
 package addnumbersfromfile;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 
 /**
  *
@@ -27,7 +26,13 @@ public class AddNumbersFromFile {
             while ((line = reader.readLine()) != null)
                     total += Integer.valueOf(line);
             System.out.println("Total: " + total);
-        } catch (Exception e) {
+        } catch (NumberFormatException e){
+            System.out.println("Invalid type: " + e.getMessage());
+        } catch (FileNotFoundException e) {
+            System.out.println("Not found: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Error interacting with file: " + e.getMessage());
+        }  catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
             try {
