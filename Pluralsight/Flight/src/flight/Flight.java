@@ -9,12 +9,13 @@ import flight.Passager;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Iterator;
 
 /**
  *
  * @author zoltaniszlai
  */
-public class Flight implements Comparable<Flight> {
+public class Flight implements Comparable<Flight>, Iterable<Person> {
     private int passengers;
     private Integer flightNumber;
     private Character flightClass;
@@ -23,11 +24,15 @@ public class Flight implements Comparable<Flight> {
     static final int MAX_FAA_SEATS = 500;
     private int flightTime; // minutes past midnight
     private CrewMember[] crew;
-    private Passager[] roaster;
+    private Passager[] roster;
     
     @Override
     public int compareTo(Flight f) {
         return flightTime - f.flightTime;
+    }
+    
+    public Iterator<Person> iterator () {
+        return new FlightIterator(crew, roster);
     }
     public void setSeats(int seats) {
         if (seats <= MAX_FAA_SEATS){

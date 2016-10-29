@@ -9,7 +9,7 @@ package flight;
  *
  * @author zoltaniszlai
  */
-public final class Passager implements Comparable<Passager> {
+public final class Passager extends Person implements Comparable<Passager> {
     private final int freeBags;
     private int checkedBags;
     private double perBagFee;

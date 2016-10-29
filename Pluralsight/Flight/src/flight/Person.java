@@ -9,13 +9,6 @@ package flight;
  *
  * @author zoltaniszlai
  */
-public class CrewMember extends Person {
-    private FlightCredJob job;
-    public CrewMember(FlightCredJob job) {
-        this.job = job;
-    }
-    
-    public void setJob(FlightCredJob job) {
-        this.job = job;
-    }
+public class Person {
+    private String name;
 }
