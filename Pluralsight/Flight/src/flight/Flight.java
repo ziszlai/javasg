@@ -14,14 +14,20 @@ import java.io.IOException;
  *
  * @author zoltaniszlai
  */
-public class Flight {
+public class Flight implements Comparable {
     private int passengers;
     private Integer flightNumber;
     private Character flightClass;
     private boolean[] isSeatAvailable;
     private int seats;
     static final int MAX_FAA_SEATS = 500;
+    private int flightTime; // minutes past midnight
     
+    @Override
+    public int compareTo(Object o) {
+        Flight f = (Flight) o;
+        return flightTime - f.flightTime;
+    }
     public void setSeats(int seats) {
         if (seats <= MAX_FAA_SEATS){
             this.seats = seats;

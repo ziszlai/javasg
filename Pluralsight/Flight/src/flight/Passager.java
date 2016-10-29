@@ -9,11 +9,30 @@ package flight;
  *
  * @author zoltaniszlai
  */
-public final class Passager {
+public final class Passager implements Comparable {
     private final int freeBags;
     private int checkedBags;
     private double perBagFee;
     int passengers;
+    private int memberLevel;
+    private int memberDays;
+   
+    @Override
+    public int compareTo(Object o) {
+        Passager p = (Passager) o;
+        if (memberLevel > p.memberLevel)
+            return -1;
+        else if (memberLevel < p.memberLevel)
+            return 1;
+        else {
+            if (memberDays > p.memberDays)
+                return -1;
+            else if (memberDays < p.memberDays)
+                return 1;
+            else
+                return 0;
+        }
+    }
 
     public int getCheckedBags() { return checkedBags; }
     public Passager() {
