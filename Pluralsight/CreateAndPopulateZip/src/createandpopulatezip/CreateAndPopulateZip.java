@@ -14,6 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.File;
 
 /**
  *
@@ -33,8 +34,10 @@ public class CreateAndPopulateZip {
             "Line 5 5 5 5 5"
         };
         
-        try (FileSystem zipFS = openZip(Paths.get("myData.zip"))) {
-            
+        try (FileSystem zipFs = openZip(Paths.get("myData.zip"))) {
+            copyToZip(zipFs);
+            writeToFileInZip1(zipFs, data);
+            writeToFileInZip2(zipFs, data);
         } catch (Exception e) {
             System.out.println(e.getClass().getSimpleName() + " - " + e.getMessage());
         }
@@ -51,14 +54,29 @@ public class CreateAndPopulateZip {
     }
     
     private static void copyToZip(FileSystem zipFs) throws IOException {
+        Path sourceFile = Paths.get("file1.txt");
+        //Path sourceFile = FileSystems.getDefault().getPath("file1.txt");
+        Path destFile = zipFs.getPath("/file1Copied.txt");
+        
+        Files.copy(sourceFile, destFile, StandardCopyOption.REPLACE_EXISTING);
     }
     
     private static void writeToFileInZip1(FileSystem zipFs, String[] data) throws IOException {
-        
+        try (BufferedWriter writer = Files.newBufferedWriter(zipFs.getPath("/newFile1.txt"))) {
+            for (String d:data) {
+                writer.wride(d);
+                writer.newLine();
+            }
+        }
     }
     
     private static void writeToFileInZip2(FileSystem zipFs, String[] data) throws IOException {
-        
+        Files.writer(
+                zipFs.getPath("/newFile2.txt"),
+                Arrays.asList(data),
+                Charset.defaultCharset(),
+                StandardOpenOption.CREATE
+        );
     }
     
 }
